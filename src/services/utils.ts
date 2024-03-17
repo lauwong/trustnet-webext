@@ -1,7 +1,7 @@
+import { trustedTypes } from 'trusted-types'
+import axios from 'axios'
 import store from '@/store'
 import consts from '@/lib/constants'
-const axios = require('axios')
-const tt = require('trusted-types')
 
 // function to sort sources by full name or username (for news publishing entities)
 function compareNames(...args) {
@@ -261,7 +261,7 @@ function getAccuracyMapping(credibility) {
     return 'confirmed'
 }
 
-const escapeHTMLPolicy = tt.trustedTypes.createPolicy('forceInner', {
+const escapeHTMLPolicy = trustedTypes.createPolicy('forceInner', {
   createHTML: to_escape => to_escape,
 })
 

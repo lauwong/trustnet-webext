@@ -14,7 +14,11 @@ export async function getManifest() {
     version: pkg.version,
     description: pkg.description,
     action: {
-      default_icon: './assets/icon-512.png',
+      default_title: 'Trustnet',
+      default_icon: {
+        19: './assets/trustnet_67.png',
+        38: './assets/trustnet_80.png',
+      },
       default_popup: './dist/popup/index.html',
     },
     options_ui: {
@@ -30,8 +34,8 @@ export async function getManifest() {
           service_worker: './dist/background/index.mjs',
         },
     icons: {
-      16: './assets/icon-512.png',
-      48: './assets/icon-512.png',
+      48: './assets/trustnet_48.png',
+      100: './assets/trustnet_100.png',
       128: './assets/icon-512.png',
     },
     permissions: [
