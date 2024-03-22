@@ -1,30 +1,80 @@
-<script setup lang="ts">
-import { useToggle } from '@vueuse/core'
-import 'uno.css'
+<script>
+import assessmentsContainer from '~/components/AssessmentsContainer'
+import setupHelpers from '~/mixins/setupHelpers'
+import pageDetails from '~/stores/pageDetails'
 
-const [show, toggle] = useToggle(false)
+export default {
+  name: 'InsertedApp',
+  components: {
+    AssessmentsContainer: assessmentsContainer,
+  },
+  mixins: [setupHelpers],
+  data: () => ({
+    authUser: null,
+  }),
+  computed: {
+    isLoggedIn() {
+      return auth.getters.isLoggedIn
+    },
+    isBlacklisted() {
+      return pageDetails.isBlacklisted
+    },
+  },
+  created() {
+    this.getUser()
+      .then((authUser) => {
+      // this.logout();
+        this.authUser = authUser
+        if (!authUser) {
+          this.logout()
+          this.$router.push({ name: 'Login' })
+        }
+        else {
+          console.log('alan authUser chie', authUser)
+          this.fetchRelationships()
+          this.fetchPageAndUserCharacteristics()
+            .then(() => {
+              if (!this.isBlacklisted) {
+                this.getPageAssessments()
+                this.getUnfollowedAssessors()
+                this.setupLinkAssessments()
+              }
+            })
+        }
+
+        this.setTimeOpened()
+      })
+  },
+  methods: {
+    ...mapActions('auth', [
+      'getUser',
+      'logout',
+    ]),
+    ...mapActions('assessments', [
+      'getPageAssessments',
+      'getUnfollowedAssessors',
+    ]),
+    ...mapActions('linkAssessments', [
+      'setupLinkAssessments',
+    ]),
+    ...mapActions('pageDetails', [
+      'setTimeOpened',
+    ]),
+  },
+}
 </script>
 
 <template>
-  <div class="fixed right-0 bottom-0 m-5 z-100 flex items-end font-sans select-none leading-1em">
-    <div
-      class="bg-white text-gray-800 rounded-lg shadow w-max h-min"
-      p="x-4 y-2"
-      m="y-auto r-2"
-      transition="opacity duration-300"
-      :class="show ? 'opacity-100' : 'opacity-0'"
-    >
-      <h1 class="text-lg">
-        Trustnet
-      </h1>
-      <SharedSubtitle />
-    </div>
-    <button
-      class="flex w-10 h-10 rounded-full shadow cursor-pointer border-none"
-      bg="teal-600 hover:teal-700"
-      @click="toggle()"
-    >
-      <pixelarticons-power class="block m-auto text-white text-lg" />
-    </button>
-  </div>
+  <v-app>
+    <router-view />
+    <AssessmentsContainer v-if="isLoggedIn & !isBlacklisted" />
+  </v-app>
 </template>
+
+<style>
+/* html {
+   min-height: initial;
+   min-width: initial;
+   z-index: 9999999;
+} */
+</style>

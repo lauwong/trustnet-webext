@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 export default {
   namespaced: true,
   state: {

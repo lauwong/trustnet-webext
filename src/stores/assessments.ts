@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import sourceServices from '@/services/sourceServices'
-import utils from '@/services/utils'
+import sourceServices from '~/services/sourceServices'
+import utils from '~/services/utils'
 
 export default {
   namespaced: true,

@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import utils from '@/services/utils'
+import utils from '~/services/utils'
 export default {
   namespaced: true,
   state: {

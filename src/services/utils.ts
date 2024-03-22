@@ -1,7 +1,7 @@
 import { trustedTypes } from 'trusted-types'
 import axios from 'axios'
 import store from '@/store'
-import consts from '@/lib/constants'
+import consts from '~/lib/constants'
 
 // function to sort sources by full name or username (for news publishing entities)
 function compareNames(...args) {

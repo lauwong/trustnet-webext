@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import store from '..'
-import generalUtils from '@/lib/generalUtils'
+import generalUtils from '~/lib/generalUtils'
 
 export default {
   namespaced: true,

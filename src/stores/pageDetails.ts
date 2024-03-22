@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import utils from '@/services/utils'
-import constants from '@/lib/constants'
+import utils from '~/services/utils'
+import constants from '~/lib/constants'
 
 export default {
   namespaced: true,

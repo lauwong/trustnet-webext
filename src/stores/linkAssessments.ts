@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-import domHelpers from '@/lib/domHelpers'
-import utils from '@/services/utils'
-import generalUtils from '@/lib/generalUtils'
-import consts from '@/lib/constants'
+import domHelpers from '~/lib/domHelpers'
+import utils from '~/services/utils'
+import generalUtils from '~/lib/generalUtils'
+import consts from '~/lib/constants'
 /*
 This module is for fetching assessments and accuracy questions of all the links
 found on the current page.

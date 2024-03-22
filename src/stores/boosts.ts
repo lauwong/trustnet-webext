@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 export default {
   namespaced: true,
   state: {
@@ -24,7 +23,7 @@ export default {
           })
           .catch((err) => {
             console.log(err)
-            reject(err)
+            reject()
           })
       })
     },
